@@ -1,0 +1,210 @@
+; vim:ft=dosini
+[module/i3]
+type = internal/i3
+pin-workspaces = false
+
+index-sort = true
+enable-click = true
+enable-scroll = true
+wrapping-scroll = true
+reverse-scroll = true
+
+fuzzy-match = false
+
+; color
+label-focused = %name%
+label-focused-foreground = ${colors.nord6}
+label-focused-padding = 2
+
+label-unfocused = %name%
+label-unfocused-foreground = ${colors.nord6}
+label-unfocused-padding = 2
+
+label-urgent = %name%
+label-urgent-foreground = ${colors.urgent}
+label-urgent-background = ${colors.foreground}
+label-urgent-padding = 2
+
+
+label-visible = %index%
+label-visible-foreground = ${colors.nord6}
+label-visible-padding = 2
+
+; seperator
+label-separator = |
+label-separator-foreground = ${colors.buffer}
+
+[module/wired-network]
+type = internal/network
+interface = enp2s0
+interval = 3.0
+
+format-connected-underline = #55aa55
+format-connected-prefix = ""
+format-connected-prefix-foreground = ${colors.nord6}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/workspace-name]
+type = internal/i3
+strip-wsnumbers = false
+
+label-focused = %name%
+label-focused-padding = 2
+label-focused-foreground = ${colors.nord6}
+label-focused-underline = ${colors.nord6}
+
+label-unfocused = 
+
+label-urgent = %name%
+label-urgent-foreground = ${colors.urgent}
+label-urgent-background = ${colors.foreground}
+label-urgent-padding = 2
+
+[module/title]
+type = internal/xwindow
+format-foreground = ${colors.nord6}
+format-underline = ${colors.nord6}
+format-padding = 4
+
+label-maxlen = 20
+label-empty = 
+
+[module/date]
+type = internal/date
+interval = 1.0
+; See "http://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+date = %H:%M
+
+date-alt = %Y-%m-%d%
+
+format = <label>
+label =  %date%
+label-margin = 1
+label-underline = ${colors.nord8}
+
+[module/battery]
+type = internal/battery
+
+full-at = ${config.battery-full-at}
+
+battery = ${config.battery-bat}
+adapter = ${config.battery-adp}
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.foreground}
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${colors.notify}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.notify}
+
+label-full = 
+label-full-foreground = ${colors.success}
+label-full-underline = ${colors.success}
+
+[module/alsa]
+type = internal/alsa
+
+master-soundcard = ${config.master-soundcard}
+speaker-soundcard = ${config.speaker-soundcard}
+headphone-soundcard = ${config.headphone-soundcard}
+
+master-mixer = ${config.master-mixer}
+
+; Format 
+format-volume = <ramp-volume> <label-volume>
+format-volume-underline = ${colors.function}
+
+label-muted =  muted
+label-muted-foreground = ${colors.urgent}
+label-muted-underline = ${colors.urgent}
+
+ramp-volume-0 = 
+ramp-volume-0-foreground = ${colors.success}
+ramp-volume-1 = 
+ramp-volume-1-foreground = ${colors.notify}
+ramp-volume-2 = 
+ramp-volume-2-foreground = ${colors.urgent}
+
+ramp-headphones-0 = 
+
+ramp-volume-foreground = ${colors.nord7}
+
+[module/weather]
+type = custom/script
+interval = 60
+
+;format-background = ${colors.background-alt}
+format = <label>
+format-prefix = "    "
+format-suffix = "   "
+format-prefix-foreground = ${colors.foreground}
+exec = python ~/.config/polybar/weather.py
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+exec = python /usr/share/polybar/scripts/spotify_status.py -f ' {artist}: {song}'
+format-underline = #ff0000
+
+[module/powermenu]
+type = custom/menu
+
+format-spacing = 1
+
+label-open = "      "
+label-open-background = ${colors.background}
+label-open-foreground = ${colors.foreground}
+label-close = "    cancel   "
+label-close-background = ${colors.background}
+label-close-foreground = ${colors.foreground}
+label-separator = " "
+label-separator-foreground = ${colors.foreground}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = "power off   "
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = reboot
+
+menu-2-0 = power off
+menu-2-0-exec = poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini

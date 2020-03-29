@@ -1,0 +1,44 @@
+; vim:ft=dosini
+
+[config]
+# DPI value for HiDPI screen
+dpi = 96
+
+# bar position, apply globally
+width = 100%
+height = 25
+offset-x = 0%
+offset-y = 0%
+radius = 0.0
+
+fixed-center = true
+override-redirect = false
+
+# Top modules
+top-left = i3 title spotify
+top-center = date weather
+top-right = wired-network alsa powermenu
+
+systray-top = right
+
+# global style
+line-size = 0
+
+# Modules configure option
+# the default value in this section should work in most cases,
+# if some of them doesn't suit your environment, you can change
+# it from here.
+# network interface, check by `ip link show`
+interface = enp2s0
+
+# soundcard setting
+master-soundcard = default
+speaker-soundcard = default
+headphone-soundcard = default
+master-mixer = Master
+
+# notify module setting
+notify-click-left = xdotool key control+grave
+
+# network module setting
+network-click-left = i3-msg workspace 2
