@@ -5,7 +5,7 @@
 rm LICENSE README.md
 
 # essentials
-yay -S git playerctl redshift ttf-font-awesome
+yay -S git playerctl redshift ttf-font-awesome nitrogen
 
 #gtk ricing stuff
 yay -S lxappearance arc-icon-theme nordic-theme-git
