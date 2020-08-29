@@ -26,7 +26,7 @@ default_border none
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+font pango:Ubuntu Medium 8
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -41,8 +41,9 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+# I really hate volume settings on keyboard for my setup
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -174,6 +175,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# lock i3
+bindsym $mod+Shift+x i3-lock
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -202,6 +205,22 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+#############################
+### settings for i3-gaps: ###
+#############################
+
+# Set inner/outer gaps
+gaps inner 10
+gaps outer 0
+#border_radius 5
+gaps top 10
+
+# change inner gaps
+bindsym $mod+plus   gaps inner all plus 5
+
+# decrease inner gap size
+bindsym $mod+minus  gaps inner all minus 5
+
 # colors
 client.focused #000000 #000000 #000000 #000000
 client.focused_inactive #626262 #626262 #626262
@@ -215,11 +234,10 @@ exec_always gsettings set org.gnome.desktop.background show-desktop-icons false
 exec_always gsettings set org.nemo.desktop show-desktop-icons false
 
 exec xsetwacom --set "HUION 420 Pen stylus" MapToOutput HEAD-0
-exec conky
 exec ~/.config/polybar/nord/launch.sh
+#exec picom --experimental-backends --backend glx 
 exec picom
 exec redshift-gtk
 exec nitrogen --restore &
-bindsym $mod+p exec ~/.local/bin/monitor-changer.sh
 
-assign [class="spotify"] 10
+for_window [class="Spotify"] move to workspace 10
