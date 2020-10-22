@@ -1,0 +1,21 @@
+output DVI-I-0
+off
+output DP-0
+off
+output DP-1
+off
+output DVI-D-0
+off
+output HDMI-0
+crtc 0
+gamma 0.769:0.667:0.588
+mode 1920x1080
+pos 0x0
+primary
+rate 60.00
+output DVI-I-1
+crtc 1
+gamma 0.769:0.667:0.588
+mode 1920x1080
+pos 1920x0
+rate 60.05

@@ -1,0 +1,157 @@
+[colors]
+nord0 = #2e3440
+nord1 = #3b4252
+nord2 = #434c5e
+nord3 = #4c566a
+nord6 = #eceff4
+nord7 = #8fbcbb
+nord8 = #88c0d0
+nord9 = #81a1c1
+nord10 = #5e81ac
+nord11 = #bf616a
+nord12 = #d08770
+nord13 = #ebcb8b
+nord14 = #a3be8c
+nord15 = #b48ead
+
+[bar/mybar]
+;monitor = ${env:MONITOR:HDMI-1}
+theme = dark
+width = 100%
+height = 27
+;offset-x = 1%
+offset-y = 5
+radius = 0
+fixed-center = false
+
+background = #00000000
+foreground = ${colors.nord6}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding = 10
+padding-color = #00000000
+
+module-margin = 0
+
+font-0 = Fira Sans:size=11;1
+;font-0 = WenQuanYiMicroHei:size=12
+font-1 = FontAwesome5FreeSolid:pixelsize=12;1
+font-2 = FontAwesome5FreeRegular:pixelsize=12;1
+font-3 = FontAwesome5Brands:pixelsize=8;1
+font-4 = FiraCodeRegular:pixelsize=12
+
+
+modules-left = bspwm xwindow spotify
+modules-center = 
+modules-right = date pulseaudio eth powermenu
+
+tray-position = center
+tray-padding = 
+;tray-background = #0063ff
+
+wm-restack = bspwm
+
+;override-redirect = true
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %index%
+label-focused-background = ${colors.nord1}
+;label-focused-underline= ${colors.nord13}
+label-focused-padding = 3
+
+label-occupied = %index%
+label-occupied-padding = 3
+label-occupied-background = ${colors.nord0}
+
+label-urgent = %index%!
+label-urgent-background = ${colors.nord13}
+label-urgent-padding = 3
+
+label-empty =
+
+pin-workspaces = false
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+format = <label>
+format-background = ${colors.nord2}
+format-padding = 2
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+exec = python /usr/share/polybar/scripts/spotify_status.py -f ' {artist}: {song}'
+format-background = ${colors.nord0}
+format-padding = 2
+
+[module/date]
+type = internal/date
+interval = 1
+
+time = "sono le %I:%M del %d/%m/%Y"
+
+format-prefix = 
+format-prefix-foreground = ${colors.nord6}
+format-background = ${colors.nord0}
+format-padding = 2
+
+label = %date% %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %%percentage%
+label-volume-foreground = ${colors.nord6}
+format-volume-background = ${colors.nord1}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.nord6}
+format-muted-background = ${colors.nord1}
+label-muted = sound muted
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+format-volume-padding = 2
+format-muted-padding = 2
+
+[module/eth]
+type = internal/network
+interface = enp2s0
+interval = 3.0
+
+format-connected-background = ${colors.nord2}
+label-connected = %downspeed:9% %upspeed:9%
+format-connected-padding = 2 
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+pseudo-transparency = true
+
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini

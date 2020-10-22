@@ -1,5 +1,6 @@
-rofi.show-icons:            false
-rofi.modi:                  drun,run,window,ssh
+rofi.show-icons:            true
+rofi.icon-theme:            "Papirus"
+rofi.modi:                  drun,run,window,ssh,combi
 rofi.lines:                 7
 rofi.line-padding:          10
 rofi.matching:              fuzzy
@@ -8,5 +9,5 @@ rofi.padding:               0
 rofi.separator-style:       none
 rofi.hide-scrollbar:        true
 rofi.line-margin:           0
-rofi.font:                  sans-serif 10
+rofi.font:                  Fira Sans 11
 rofi.theme:                 nord.rasi

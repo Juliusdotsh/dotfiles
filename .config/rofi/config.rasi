@@ -1,0 +1,15 @@
+configuration {
+	modi: "drun,run,window,ssh";
+	lines: 7;
+	font: "Fira Sans 11";
+	bw: 0;
+	padding: 0;
+	show-icons: true;
+	icon-theme: "'Arc-Icons'";
+	matching: "fuzzy";
+	line-margin: 0;
+	line-padding: 10;
+	separator-style: "none";
+	hide-scrollbar: true;
+	theme: "slate.rasi";
+}

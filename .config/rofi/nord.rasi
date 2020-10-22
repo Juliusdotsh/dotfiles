@@ -6,6 +6,11 @@
 // Colors
 //----------------------
 
+configuration {
+    show-icons: true;
+    icon-theme: "Arc";
+}
+
 * {
     nord0:			 #2E3440;
     nord1: 			 #3B4252;
@@ -140,11 +145,6 @@
     padding:    5px ;
     border:	0 0 1;
     border-color: @separatorcolor;
-}
-
-#case-indicator {
-    spacing:    0;
-    text-color: @normal-foreground;
 }
 
 #entry {
